@@ -1,13 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
     body {
-        @apply bg-[#f7f9fd] text-slate-900 antialiased;
+        @apply bg-[#EEE4D2] text-[#1A1A1A] antialiased;
+        font-weight: 500;
+        background-image:
+            radial-gradient(ellipse at 18% 8%, rgb(255 255 255 / 0.46), transparent 32%),
+            radial-gradient(ellipse at 84% 82%, rgb(117 98 70 / 0.06), transparent 38%),
+            radial-gradient(ellipse at 52% 48%, transparent 40%, rgb(117 98 70 / 0.035) 70%, transparent 78%),
+            repeating-linear-gradient(90deg, transparent 0 10px, rgb(117 98 70 / 0.018) 11px, transparent 12px),
+            repeating-linear-gradient(0deg, transparent 0 31px, rgb(185 165 132 / 0.20) 32px, transparent 33px);
+        background-attachment: fixed;
     }
 
-    h1, h2, h3 { @apply font-display; }
+    h1, h2, h3 { @apply font-display font-extrabold tracking-[-0.02em] text-[#1A1A1A]; }
 }
 
 @layer components {
@@ -33,7 +43,8 @@
     }
 
     .sm-workspace-hero {
-        @apply relative overflow-hidden rounded-3xl bg-[#102a56] px-6 py-7 text-white shadow-[0_18px_40px_rgb(16_42_86_/_16%)] sm:px-8 sm:py-8;
+        @apply relative overflow-hidden rounded-[32px] bg-primary px-6 py-7 text-white shadow-[0_10px_30px_rgb(0_0_0_/_5%)] sm:px-8 sm:py-8;
+        background-image: radial-gradient(circle at 92% 10%, rgb(255 255 255 / 0.2), transparent 17rem);
     }
 
     .sm-workspace-hero::after {
@@ -42,21 +53,22 @@
     }
 
     .sm-eyebrow { @apply text-xs font-bold tracking-[0.14em] text-primary uppercase; }
-    .sm-workspace-hero .sm-eyebrow { @apply text-blue-200; }
+    .sm-workspace-hero .sm-eyebrow { @apply text-white/80; }
 
     .sm-option {
-        @apply flex flex-1 cursor-pointer items-center gap-3 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-slate-700 transition hover:border-primary-200 hover:bg-primary-50;
+        @apply flex flex-1 cursor-pointer items-center gap-3 rounded-[24px] border border-[#DDD2BF] bg-[#F8F4EC] px-4 py-3.5 text-sm font-semibold text-[#1A1A1A] shadow-[0_10px_30px_rgb(0_0_0_/_5%)] transition duration-300 hover:-translate-y-1.5 hover:border-primary-300 hover:bg-primary-50 hover:shadow-[0_18px_38px_rgb(0_0_0_/_8%)];
     }
 
-    .sm-option:has(input:checked) { @apply border-primary bg-primary-50 text-primary-700 ring-1 ring-primary; }
+    .sm-option:has(input:checked) { @apply border-primary bg-primary-50 text-primary-700 ring-2 ring-primary-100; }
 
     /* Card */
     .sm-card {
-        @apply bg-surface rounded-2xl border border-slate-200/80 shadow-soft overflow-hidden;
+        @apply overflow-hidden rounded-[32px] border border-[#DDD2BF] bg-surface shadow-[0_10px_30px_rgb(0_0_0_/_5%)] transition duration-300 ease-[cubic-bezier(0.22,1,0.36,1)];
     }
 
     .sm-card-header {
-        @apply px-5 py-4 sm:px-6 border-b border-slate-200 bg-white;
+        @apply border-b border-slate-100 px-5 py-4 sm:px-6;
+        background: #F8F4EC;
     }
 
     .sm-card-body {
@@ -69,15 +81,18 @@
 
     /* Buttons */
     .sm-btn {
-        @apply inline-flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-medium rounded-lg transition duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer;
+        @apply inline-flex min-h-12 items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-semibold transition duration-[250ms] ease-in-out focus:outline-none focus:ring-4 focus:ring-primary-100 disabled:cursor-not-allowed disabled:opacity-50 cursor-pointer;
     }
 
     .sm-btn-primary {
-        @apply sm-btn bg-primary text-white hover:bg-primary-700 focus:ring-primary-500 shadow-[0_9px_18px_rgb(39_101_223_/_20%)];
+        @apply sm-btn border border-primary text-white focus:ring-primary-500 shadow-[0_10px_22px_rgb(47_203_99_/_22%)];
+        background: #2FCB63;
     }
+    .sm-btn-primary:hover { background: #27B457; transform: scale(1.03); }
+    .sm-btn:active { transform: scale(.98); }
 
     .sm-btn-secondary {
-        @apply sm-btn bg-white text-slate-700 border border-slate-300 hover:bg-slate-50 focus:ring-slate-400;
+        @apply sm-btn border border-[#DDD2BF] bg-[#F8F4EC] text-[#1A1A1A] hover:bg-white focus:ring-primary-100;
     }
 
     .sm-btn-danger {
@@ -98,14 +113,23 @@
 
     /* Form */
     .sm-label {
-        @apply block text-sm font-medium text-slate-700 mb-1.5;
+        @apply mb-2 block text-sm font-bold tracking-[-0.01em] text-slate-700;
     }
 
     .sm-input,
     .sm-select,
     .sm-textarea {
-        @apply block w-full rounded-lg border-slate-300 shadow-sm text-sm text-slate-900 placeholder:text-slate-400 focus:border-primary focus:ring-primary disabled:bg-slate-100 disabled:cursor-not-allowed;
+        @apply block w-full rounded-[18px] border-[#DDD2BF] bg-white/70 px-4 py-3 text-sm text-[#1A1A1A] shadow-none placeholder:text-[#9D968C] transition duration-200 focus:border-primary focus:bg-white focus:ring-4 focus:ring-primary-100 disabled:cursor-not-allowed disabled:bg-slate-100;
     }
+
+    .sm-select { @apply pr-10; }
+    .sm-textarea { @apply leading-6; }
+
+    .sm-input:hover, .sm-select:hover, .sm-textarea:hover { @apply border-primary-300 bg-white; }
+
+    .sm-form-note { @apply mt-2 flex items-start gap-2 text-xs leading-5 text-muted; }
+    .sm-form-note::before { content: '✦'; @apply mt-px text-primary; }
+    .sm-form-section { @apply rounded-[24px] border border-[#DDD2BF] bg-primary-50/70 p-4 sm:p-5; }
 
     .sm-radio-group {
         @apply flex flex-col sm:flex-row gap-3 sm:gap-6;
@@ -192,7 +216,7 @@
 
     /* Stat card */
     .sm-stat-card {
-        @apply sm-card p-5 sm:p-6 hover:-translate-y-0.5 hover:shadow-card transition duration-200;
+        @apply sm-card p-5 sm:p-6 hover:-translate-y-1.5 hover:shadow-card transition duration-300 ease-[cubic-bezier(0.22,1,0.36,1)];
     }
 
     .sm-stat-value {
@@ -218,15 +242,55 @@
 
     /* Nav active (desktop) */
     .sm-nav-link {
-        @apply inline-flex items-center gap-2 px-3 py-2 text-sm font-medium rounded-xl text-muted hover:text-slate-900 hover:bg-slate-100 transition duration-150;
+        @apply relative inline-flex items-center gap-2 rounded-full px-3 py-2 text-sm font-medium text-muted transition duration-200 hover:text-[#1A1A1A];
     }
 
     .sm-nav-link-active {
-        @apply sm-nav-link text-primary bg-primary-50 hover:bg-primary-50 hover:text-primary;
+        @apply sm-nav-link bg-primary-50 text-primary hover:bg-primary-50 hover:text-primary;
     }
 
     /* Skill list item */
     .sm-list-item {
         @apply flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 py-4 border-b border-slate-100 last:border-0;
     }
+
+    .sm-card:hover { @apply -translate-y-1.5 shadow-card; }
+    .sm-nav-link::after { content: ''; @apply absolute bottom-1 left-3 h-0.5 w-0 bg-primary transition-all duration-300; }
+    .sm-nav-link:hover::after, .sm-nav-link-active::after { @apply w-[calc(100%-1.5rem)]; }
+    .sm-card, .sm-stat-card { animation: sm-reveal 700ms ease-out both; }
+    .sm-card:nth-child(2), .sm-stat-card:nth-child(2) { animation-delay: 100ms; }
+    .sm-card:nth-child(3), .sm-stat-card:nth-child(3) { animation-delay: 200ms; }
 }
+
+@keyframes sm-reveal { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; } }
+
+/* Shared Hoprise treatment for existing user and guest layouts. */
+body .min-h-screen.bg-white,
+body .min-h-screen.bg-\[\#f7f9fd\] {
+    background-color: #EEE4D2 !important;
+    background-image:
+        radial-gradient(ellipse at 18% 8%, rgb(255 255 255 / 0.46), transparent 32%),
+        radial-gradient(ellipse at 84% 82%, rgb(117 98 70 / 0.06), transparent 38%),
+        radial-gradient(ellipse at 52% 48%, transparent 40%, rgb(117 98 70 / 0.035) 70%, transparent 78%),
+        repeating-linear-gradient(90deg, transparent 0 10px, rgb(117 98 70 / 0.018) 11px, transparent 12px),
+        repeating-linear-gradient(0deg, transparent 0 31px, rgb(185 165 132 / 0.20) 32px, transparent 33px) !important;
+    background-attachment: fixed !important;
+}
+
+nav.sticky { background: rgb(238 228 210 / 0.82) !important; border-color: #DDD2BF !important; box-shadow: none !important; }
+nav.sticky .sm-avatar { background: #E8F7ED !important; color: #1E9147 !important; box-shadow: none !important; }
+
+main .bg-white:not(input):not(select):not(textarea),
+main .bg-white\/90 { background-color: #F8F4EC !important; }
+main .border-slate-100,
+main .border-slate-200,
+main .border-slate-200\/80 { border-color: #DDD2BF !important; }
+main .text-slate-900 { color: #1A1A1A !important; }
+main .text-slate-700 { color: #4E4A45 !important; }
+main .text-slate-500 { color: #6F6A63 !important; }
+main [class*="bg-[#102a56]"] { background-color: #2FCB63 !important; box-shadow: 0 10px 30px rgb(0 0 0 / 0.05) !important; }
+
+.sm-alert { border-radius: 18px; }
+.sm-badge { border-radius: 9999px; }
+.sm-empty > div { background-color: #E8F7ED !important; color: #1E9147 !important; }

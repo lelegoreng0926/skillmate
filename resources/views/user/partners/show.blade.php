@@ -9,6 +9,10 @@
         Kembali ke Partner
     </a>
 
+    @if(session('success'))
+        <div class="sm-alert-success">{{ session('success') }}</div>
+    @endif
+
     @if(session('info'))
         <div class="sm-alert-info">{{ session('info') }}</div>
     @endif

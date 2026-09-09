@@ -47,11 +47,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/learning-requests', [UserLearningRequestController::class, 'index'])
         ->name('learning-requests.index');
 
-    Route::get('/learning-requests/create/{user}', function (\App\Models\User $user) {
-        return redirect()
-            ->route('partners.show', $user)
-            ->with('info', 'Fitur learning request akan segera diimplementasikan.');
-    })->name('learning-requests.create');
+    Route::get('/learning-requests/create/{user}', [UserLearningRequestController::class, 'create'])
+        ->name('learning-requests.create');
+
+    Route::post('/learning-requests/{user}', [UserLearningRequestController::class, 'store'])
+        ->name('learning-requests.store');
 
 });
 

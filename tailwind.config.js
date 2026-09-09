@@ -12,19 +12,19 @@ export default {
     theme: {
         extend: {
             fontFamily: {
-                sans: ['DM Sans', ...defaultTheme.fontFamily.sans],
-                display: ['Plus Jakarta Sans', ...defaultTheme.fontFamily.sans],
+                sans: ['Inter', ...defaultTheme.fontFamily.sans],
+                display: ['Inter', ...defaultTheme.fontFamily.sans],
             },
             colors: {
                 primary: {
-                    50: '#EEF5FF', 100: '#DCEAFF', 200: '#C3DCFF', 300: '#9AC5FF',
-                    400: '#669FFF', 500: '#3978EF', 600: '#2765DF', 700: '#1F50BD',
-                    800: '#193F96', 900: '#173676', DEFAULT: '#2765DF',
+                    50: '#E8F7ED', 100: '#D5F2DF', 200: '#B0E8C3', 300: '#7DDD9D',
+                    400: '#4FD174', 500: '#2FCB63', 600: '#27B457', 700: '#1E9147',
+                    800: '#167238', 900: '#10592C', DEFAULT: '#2FCB63',
                 },
-                surface: '#FFFFFF',
+                surface: '#F8F4EC',
                 muted: {
-                    DEFAULT: '#64748B',
-                    foreground: '#94A3B8',
+                    DEFAULT: '#6F6A63',
+                    foreground: '#9D968C',
                 },
                 success: {
                     DEFAULT: '#16A34A',
@@ -44,8 +44,8 @@ export default {
                 },
             },
             boxShadow: {
-                soft: '0 1px 3px 0 rgb(15 23 42 / 0.06), 0 1px 2px -1px rgb(15 23 42 / 0.06)',
-                card: '0 1px 3px 0 rgb(15 23 42 / 0.08), 0 4px 12px -2px rgb(15 23 42 / 0.06)',
+                soft: '0 10px 30px rgb(0 0 0 / 0.05)',
+                card: '0 18px 38px rgb(0 0 0 / 0.08)',
             },
             maxWidth: {
                 content: '75rem',

@@ -6,6 +6,10 @@
 <div class="sm-page">
     <section class="sm-workspace-hero mb-7"><div class="relative z-10"><p class="sm-eyebrow">KONEKSI BELAJAR</p><h1 class="mt-2 text-3xl font-extrabold tracking-tight">Learning request</h1><p class="mt-2 max-w-xl text-sm leading-6 text-blue-100/80">Pantau ajakan belajar yang kamu kirim maupun terima dari komunitas.</p></div></section>
 
+    @if(session('success'))
+        <div class="sm-alert-success">{{ session('success') }}</div>
+    @endif
+
     @if(session('info'))
         <div class="sm-alert-info">{{ session('info') }}</div>
     @endif
@@ -17,7 +21,12 @@
                     <div class="min-w-0">
                         <div class="flex flex-wrap items-center gap-2 mb-1">
                             <span class="font-semibold text-slate-900">{{ $request->skill->name ?? '-' }}</span>
-                            <span class="sm-badge-primary">{{ ucfirst($request->status) }}</span>
+                            <span class="sm-badge-primary">{{ $request->status }}</span>
+                            @if($request->sender_id === auth()->id())
+                                <span class="sm-badge-neutral">Dikirim</span>
+                            @else
+                                <span class="sm-badge-info">Diterima</span>
+                            @endif
                         </div>
                         <p class="text-sm text-muted">
                             @if($request->sender_id === auth()->id())
