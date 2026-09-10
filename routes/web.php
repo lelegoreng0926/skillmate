@@ -16,7 +16,12 @@ use App\Http\Controllers\User\LearningRequestController as UserLearningRequestCo
 
 use App\Http\Controllers\LandingController;
 
+Route::get('/health', function () {
+    return 'SkillMate Laravel is running!';
+});
+
 Route::get('/', [LandingController::class, 'index']);
+
 
 /*
 |--------------------------------------------------------------------------
