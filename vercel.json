@@ -6,13 +6,5 @@
       "entrypoint": "Dockerfile.vercel",
       "runtime": "container"
     }
-  },
-  "rewrites": [
-    {
-      "source": "/(.*)",
-      "destination": {
-        "service": "app"
-      }
-    }
-  ]
+  }
 }
