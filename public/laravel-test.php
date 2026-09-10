@@ -11,17 +11,40 @@ try {
 
     $response = $kernel->handle($request);
 
-    echo "Laravel HTTP kernel works!<br><br>";
-    echo "Status: " . $response->getStatusCode() . "<br>";
-    echo "Response: " . htmlspecialchars($response->getContent());
+    echo "STATUS: " . $response->getStatusCode() . "<br><br>";
+
+    if ($response->getStatusCode() >= 500) {
+        echo "Laravel returned an error.<br><br>";
+
+        echo "APP_ENV: " . htmlspecialchars((string) env('APP_ENV')) . "<br>";
+        echo "APP_DEBUG: " . (env('APP_DEBUG') ? 'true' : 'false') . "<br>";
+        echo "DB_CONNECTION: " . htmlspecialchars((string) env('DB_CONNECTION')) . "<br>";
+        echo "SESSION_DRIVER: " . htmlspecialchars((string) env('SESSION_DRIVER')) . "<br>";
+        echo "SESSION_CONNECTION: " . htmlspecialchars((string) env('SESSION_CONNECTION')) . "<br><br>";
+
+        echo "Response:<br>";
+        echo htmlspecialchars($response->getContent());
+    } else {
+        echo htmlspecialchars($response->getContent());
+    }
 
     $kernel->terminate($request, $response);
 
 } catch (Throwable $e) {
+
     http_response_code(500);
 
-    echo "Laravel HTTP error<br><br>";
-    echo "<strong>Message:</strong> " . htmlspecialchars($e->getMessage()) . "<br><br>";
-    echo "<strong>File:</strong> " . htmlspecialchars($e->getFile()) . "<br>";
-    echo "<strong>Line:</strong> " . $e->getLine();
+    echo "<h2>EXCEPTION</h2>";
+
+    echo "<strong>Message:</strong><br>";
+    echo htmlspecialchars($e->getMessage());
+
+    echo "<br><br><strong>File:</strong><br>";
+    echo htmlspecialchars($e->getFile());
+
+    echo "<br><br><strong>Line:</strong><br>";
+    echo $e->getLine();
+
+    echo "<br><br><strong>Trace:</strong><br>";
+    echo nl2br(htmlspecialchars($e->getTraceAsString()));
 }
