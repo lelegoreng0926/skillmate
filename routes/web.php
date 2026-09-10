@@ -18,7 +18,9 @@ use App\Http\Controllers\LandingController;
 
 Route::get('/health', function () {
     return 'SkillMate Laravel is running!';
-});
+})->withoutMiddleware([
+    \Illuminate\Session\Middleware\StartSession::class,
+]);
 
 Route::get('/', [LandingController::class, 'index']);
 
