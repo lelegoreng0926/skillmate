@@ -3,7 +3,6 @@
 
     encode zstd gzip
 
-    php_server {
-        try_files {path} index.php
-    }
+    php_server
+    file_server
 }
