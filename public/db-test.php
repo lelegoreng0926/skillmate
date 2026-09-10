@@ -5,9 +5,11 @@ try {
 
     $app = require __DIR__ . '/../bootstrap/app.php';
 
-    $app->boot();
+    $kernel = $app->make(Illuminate\Contracts\Console\Kernel::class);
 
-    echo "Laravel boot: OK<br><br>";
+    $kernel->bootstrap();
+
+    echo "Laravel bootstrap: OK<br><br>";
 
     echo "DB driver: " . htmlspecialchars((string) config('database.default')) . "<br>";
     echo "DB host: " . htmlspecialchars((string) config('database.connections.mysql.host')) . "<br>";
@@ -17,7 +19,8 @@ try {
     $pdo = $app->make('db')->connection()->getPdo();
 
     echo "<strong>DATABASE CONNECTION: OK</strong><br>";
-    echo "MySQL version: " . htmlspecialchars($pdo->getAttribute(PDO::ATTR_SERVER_VERSION));
+    echo "MySQL version: " .
+        htmlspecialchars($pdo->getAttribute(PDO::ATTR_SERVER_VERSION));
 
 } catch (Throwable $e) {
 
@@ -33,4 +36,7 @@ try {
 
     echo "<br><br><strong>Line:</strong><br>";
     echo $e->getLine();
+
+    echo "<br><br><strong>Trace:</strong><br>";
+    echo nl2br(htmlspecialchars($e->getTraceAsString()));
 }
