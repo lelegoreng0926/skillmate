@@ -1,4 +1,14 @@
 <x-guest-layout>
+    @if (session('registration_success'))
+        <div x-data="{ open: true }" x-show="open" x-cloak class="fixed inset-0 z-50 flex items-center justify-center bg-[#1A1A1A]/45 p-5" role="dialog" aria-modal="true" aria-labelledby="registration-success-title">
+            <div class="w-full max-w-sm rounded-3xl bg-white p-7 text-center shadow-card" @click.outside="open = false">
+                <div class="mx-auto grid h-14 w-14 place-items-center rounded-full bg-primary-50 text-2xl text-primary">✓</div>
+                <h2 id="registration-success-title" class="mt-5 text-xl font-extrabold text-slate-900">Pendaftaran berhasil!</h2>
+                <p class="mt-2 text-sm leading-6 text-muted">{{ session('registration_success') }}</p>
+                <button type="button" class="mt-6 w-full rounded-full bg-primary px-5 py-3 text-sm font-bold text-white transition hover:bg-primary-600 focus:outline-none focus:ring-4 focus:ring-primary-100" @click="open = false">Mengerti, masuk sekarang</button>
+            </div>
+        </div>
+    @endif
     <div class="mb-8"><p class="text-sm font-semibold text-primary">SELAMAT DATANG KEMBALI</p><h1 class="mt-2 text-3xl font-extrabold tracking-tight text-slate-900">Masuk ke SkillMate</h1><p class="mt-2 text-sm leading-6 text-muted">Lanjutkan perjalanan belajarmu bersama komunitas.</p></div>
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
